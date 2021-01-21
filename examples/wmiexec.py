@@ -37,7 +37,12 @@ from impacket.dcerpc.v5.dtypes import NULL
 from impacket.krb5.keytab import Keytab
 from six import PY2
 
-OUTPUT_FILENAME = '__' + str(time.time())
+import random
+
+OUTPUT_ALPHA = "abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+OUTPUT_FILENAME = "".join(random.choice(OUTPUT_ALPHA) for i in range(0,random.randint(12,20)))
+print("OUTPUT_FILENAME = %s" % OUTPUT_FILENAME)
+# OUTPUT_FILENAME = '__' + str(time.time())
 CODEC = sys.stdout.encoding
 
 class WMIEXEC:

@@ -45,11 +45,26 @@ from impacket import version, smbserver
 from impacket.dcerpc.v5 import transport, scmr
 from impacket.krb5.keytab import Keytab
 
-OUTPUT_FILENAME = '__output'
-BATCH_FILENAME  = 'execute.bat'
-SMBSERVER_DIR   = '__tmp'
-DUMMY_SHARE     = 'TMP'
-SERVICE_NAME    = 'BTOBTO'
+import random
+
+OUTPUT_ALPHA = "abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+OUTPUT_FILENAME = "".join(random.choice(OUTPUT_ALPHA) for i in range(0,random.randint(12,20)))
+SMBSERVER_DIR = "".join(random.choice(OUTPUT_ALPHA) for i in range(0,random.randint(6,14)))
+SERVICE_NAME = "".join(random.choice(OUTPUT_ALPHA) for i in range(0,random.randint(6,14)))
+DUMMY_SHARE = "".join(random.choice(OUTPUT_ALPHA) for i in range(0,random.randint(5,10)))
+BATCH_FILENAME = "".join(random.choice(OUTPUT_ALPHA) for i in range(0,random.randint(6,8))) + ".bat"
+
+print("OUTPUT_FILENAME = %s" % OUTPUT_FILENAME)
+print("SMBSERVER_DIR = %s" % SMBSERVER_DIR)
+print("SERVICE_NAME = %s" % SERVICE_NAME)
+print("DUMMY_SHARE = %s" % DUMMY_SHARE)
+print("BATCH_FILENAME = %s" % BATCH_FILENAME)
+
+# OUTPUT_FILENAME = '__output'
+# BATCH_FILENAME  = 'execute.bat'
+# SMBSERVER_DIR   = '__tmp'
+# DUMMY_SHARE     = 'TMP'
+# SERVICE_NAME    = 'BTOBTO'
 CODEC = sys.stdout.encoding
 
 class SMBServer(Thread):
